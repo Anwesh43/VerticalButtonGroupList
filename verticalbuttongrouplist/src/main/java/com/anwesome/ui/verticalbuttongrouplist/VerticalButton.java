@@ -15,6 +15,7 @@ import android.view.View;
 public class VerticalButton extends View {
     private float scale = 0;
     private String text;
+    private boolean isTapped = false;
     private int color = Color.parseColor("#0097A7");
     private AnimationController touchAnimController;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -30,18 +31,20 @@ public class VerticalButton extends View {
         canvas.save();
         canvas.translate(w/2,h/2);
         paint.setColor(Color.GRAY);
-        canvas.drawRoundRect(new RectF(-w/2,-h/2,w/2,h/2),Math.max(w,h)/10,Math.max(w,h)/10,paint);
+        float rx = Math.max(w,h)/5;
+        canvas.drawRoundRect(new RectF(-w/2,-h/2,w/2,h/2),rx,rx,paint);
         canvas.save();
         canvas.scale(scale,scale);
         int r = Color.red(color),g = Color.green(color),b = Color.blue(color);
         paint.setColor(Color.argb(150,r,g,b));
-        canvas.drawRoundRect(new RectF(-w/2,-h/2,w/2,h/2),Math.max(w,h)/10,Math.max(w,h)/10,paint);
+        canvas.drawRoundRect(new RectF(-w/2,-h/2,w/2,h/2),rx,rx,paint);
         canvas.restore();
         canvas.restore();
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN && touchAnimController!=null) {
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN && touchAnimController!=null && !isTapped) {
+            touchAnimController.start();
+            isTapped = true;
         }
         return true;
     }

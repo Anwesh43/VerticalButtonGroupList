@@ -78,10 +78,7 @@ public class VerticalButtonGroup extends ViewGroup {
         verticalButton.setTouchAnimController(new AnimationController(500, new AnimationController.AnimationHandler() {
             @Override
             public void update(float factor) {
-                if(!isTapped) {
-                    verticalButton.update(factor);
-                    isTapped = true;
-                }
+                verticalButton.update(factor);
             }
 
             @Override
