@@ -42,7 +42,7 @@ public class VerticalButton extends View {
         paint.setColor(Color.WHITE);
         paint.setTextSize(h/2);
         String adjustedText = getAdjustedString(4*w/5);
-        canvas.drawText(adjustedText,-paint.measureText(adjustedText)/2,0,paint);
+        canvas.drawText(adjustedText,-paint.measureText(adjustedText)/2,h/15,paint);
         canvas.restore();
     }
     private String getAdjustedString(int w) {
@@ -50,7 +50,7 @@ public class VerticalButton extends View {
         for(int i=0;i<text.length();i++) {
             char ch = text.charAt(i);
             if(paint.measureText(msg+ch) > w) {
-                return msg;
+                return msg+"..";
             }
             else {
                 msg = msg+ch;

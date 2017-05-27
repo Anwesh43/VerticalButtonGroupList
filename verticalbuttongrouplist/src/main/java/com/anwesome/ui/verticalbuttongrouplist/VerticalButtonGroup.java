@@ -61,7 +61,7 @@ public class VerticalButtonGroup extends ViewGroup {
             hMax += (child.getMeasuredHeight()+h/30);
         }
         topY = (h-hMax)/2;
-        setMeasuredDimension(w,hMax);
+        setMeasuredDimension(w,hMax-viewH);
     }
     public void onLayout(boolean reloaded,int a,int b,int w,int h) {
         int y = h/30,x = w/5;
