@@ -13,7 +13,7 @@ public class AnimationController extends AnimatorListenerAdapter implements Valu
     private AnimationHandler animationHandler;
     public void onAnimationUpdate(ValueAnimator valueAnimator) {
         if(animationHandler!=null) {
-            animationHandler.update();
+            animationHandler.update((float)valueAnimator.getAnimatedValue());
         }
     }
     public void onAnimationEnd(Animator animator) {
@@ -29,7 +29,7 @@ public class AnimationController extends AnimatorListenerAdapter implements Valu
 
     }
     public interface AnimationHandler {
-        void update();
+        void update(float factor);
         void end();
     }
     public void start() {

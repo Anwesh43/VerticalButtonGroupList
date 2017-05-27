@@ -18,10 +18,12 @@ public class VerticalButton extends View {
     private int color = Color.parseColor("#0097A7");
     private AnimationController touchAnimController;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    public VerticalButton(Context context,String text,AnimationController animationController) {
+    public VerticalButton(Context context,String text) {
         super(context);
         this.text = text;
-        this.touchAnimController = animationController;
+    }
+    public void setTouchAnimController(AnimationController animController) {
+        this.touchAnimController = animController;
     }
     public void onDraw(Canvas canvas) {
         int w = canvas.getWidth(),h = canvas.getHeight();

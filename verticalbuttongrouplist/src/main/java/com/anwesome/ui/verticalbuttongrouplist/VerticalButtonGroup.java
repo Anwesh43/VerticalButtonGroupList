@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  */
 
 public class VerticalButtonGroup extends ViewGroup {
-    private int w,h,viewH,viewW;
+    private int w,h,viewH,viewW,topY;
     public VerticalButtonGroup(Context context) {
         super(context);
     }
@@ -25,6 +25,7 @@ public class VerticalButtonGroup extends ViewGroup {
             w = size.x;
             h = size.y;
             viewH = h/12;
+            viewW = 3*w/5;
         }
     }
     public void onMeasure(int wspec,int hspec) {
@@ -37,7 +38,7 @@ public class VerticalButtonGroup extends ViewGroup {
         setMeasuredDimension(w,hMax);
     }
     public void onLayout(boolean reloaded,int a,int b,int w,int h) {
-        int y = h/30,x = w/10;
+        int y = h/30,x = w/5;
         for(int i=0;i<getChildCount();i++) {
             View child = getChildAt(i);
             child.layout(x,y,x+child.getMeasuredWidth(),y+child.getMeasuredHeight());
@@ -45,5 +46,18 @@ public class VerticalButtonGroup extends ViewGroup {
         }
     }
     public void addButton(String text) {
+        final VerticalButton verticalButton = new VerticalButton(getContext(),text);
+        verticalButton.setTouchAnimController(new AnimationController(500, new AnimationController.AnimationHandler() {
+            @Override
+            public void update(float factor) {
+                verticalButton.update(factor);
+            }
+
+            @Override
+            public void end() {
+
+            }
+        }));
+        addView(verticalButton,new LayoutParams(viewW,viewH));
     }
 }
