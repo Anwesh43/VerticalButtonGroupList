@@ -36,6 +36,9 @@ public class VerticalButtonGroup extends ViewGroup {
             public void end() {
 
             }
+            public boolean shouldStart() {
+                return true;
+            }
         });
     }
     public void initDimension(Context context) {
@@ -84,6 +87,14 @@ public class VerticalButtonGroup extends ViewGroup {
             @Override
             public void end() {
                 endAnim.start();
+            }
+            @Override
+            public boolean shouldStart() {
+                boolean condition = isTapped;
+                if(!condition) {
+                    isTapped = true;
+                }
+                return !condition;
             }
         }));
         addView(verticalButton,new LayoutParams(viewW,viewH));

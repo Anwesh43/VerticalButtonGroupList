@@ -31,8 +31,11 @@ public class AnimationController extends AnimatorListenerAdapter implements Valu
     public interface AnimationHandler {
         void update(float factor);
         void end();
+        boolean shouldStart();
     }
     public void start() {
-        animator.start();
+        if(animationHandler!=null && animationHandler.shouldStart()) {
+            animator.start();
+        }
     }
 }
