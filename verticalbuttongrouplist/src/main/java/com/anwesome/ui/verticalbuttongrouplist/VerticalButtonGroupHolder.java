@@ -27,6 +27,7 @@ public class VerticalButtonGroupHolder  {
     }
     public void show() {
         if(!isShown) {
+            verticalButtonGroup.setElevation(20);
             verticalButtonGroup.setBackgroundColor(Color.WHITE);
             relativeLayout.addView(verticalButtonGroup,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             relativeLayout.setBackgroundColor(Color.BLACK);

@@ -39,7 +39,24 @@ public class VerticalButton extends View {
         paint.setColor(Color.argb(150,r,g,b));
         canvas.drawRoundRect(new RectF(-w/2,-h/2,w/2,h/2),rx,rx,paint);
         canvas.restore();
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(h/2);
+        String adjustedText = getAdjustedString(4*w/5);
+        canvas.drawText(adjustedText,-paint.measureText(adjustedText)/2,0,paint);
         canvas.restore();
+    }
+    private String getAdjustedString(int w) {
+        String msg = "";
+        for(int i=0;i<text.length();i++) {
+            char ch = text.charAt(i);
+            if(paint.measureText(msg+ch) > w) {
+                return msg;
+            }
+            else {
+                msg = msg+ch;
+            }
+        }
+        return msg;
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && touchAnimController!=null && !isTapped) {
