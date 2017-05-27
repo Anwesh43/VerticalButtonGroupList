@@ -31,6 +31,7 @@ public class VerticalButtonGroupHolder  {
             relativeLayout.addView(verticalButtonGroup,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             relativeLayout.setBackgroundColor(Color.BLACK);
             activity.setContentView(relativeLayout);
+            verticalButtonGroup.start();
             isShown = true;
         }
     }

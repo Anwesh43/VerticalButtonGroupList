@@ -68,6 +68,11 @@ public class VerticalButtonGroup extends ViewGroup {
             y += (child.getMeasuredHeight()+h/30);
         }
     }
+    public void start() {
+        if(startAnim != null) {
+            startAnim.start();
+        }
+    }
     public void addButton(String text) {
         final VerticalButton verticalButton = new VerticalButton(getContext(),text);
         verticalButton.setTouchAnimController(new AnimationController(500, new AnimationController.AnimationHandler() {
