@@ -13,8 +13,30 @@ import android.view.ViewGroup;
 
 public class VerticalButtonGroup extends ViewGroup {
     private int w,h,viewH,viewW,topY;
+    private AnimationController startAnim,endAnim;
+    private boolean isTapped = false;
     public VerticalButtonGroup(Context context) {
         super(context);
+        initDimension(context);
+        startAnim = getTranslateYAnimation(1);
+        endAnim = getTranslateYAnimation(-1);
+    }
+    public AnimationController getTranslateYAnimation(final int dir) {
+        return  new AnimationController(1000, new AnimationController.AnimationHandler() {
+            @Override
+            public void update(float factor) {
+                float newFactor = factor;
+                if(dir == -1) {
+                    newFactor = (1-factor);
+                }
+                setY(h-newFactor*(h-topY));
+            }
+
+            @Override
+            public void end() {
+
+            }
+        });
     }
     public void initDimension(Context context) {
         DisplayManager displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
@@ -35,6 +57,7 @@ public class VerticalButtonGroup extends ViewGroup {
             measureChild(child,wspec,hspec);
             hMax += (child.getMeasuredHeight()+h/30);
         }
+        topY = (h-hMax)/2;
         setMeasuredDimension(w,hMax);
     }
     public void onLayout(boolean reloaded,int a,int b,int w,int h) {
@@ -50,12 +73,15 @@ public class VerticalButtonGroup extends ViewGroup {
         verticalButton.setTouchAnimController(new AnimationController(500, new AnimationController.AnimationHandler() {
             @Override
             public void update(float factor) {
-                verticalButton.update(factor);
+                if(!isTapped) {
+                    verticalButton.update(factor);
+                    isTapped = true;
+                }
             }
 
             @Override
             public void end() {
-
+                endAnim.start();
             }
         }));
         addView(verticalButton,new LayoutParams(viewW,viewH));
