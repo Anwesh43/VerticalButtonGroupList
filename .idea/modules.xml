@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/VerticalButtonGroupListDemo.iml" filepath="$PROJECT_DIR$/VerticalButtonGroupListDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/verticalbuttongrouplist/verticalbuttongrouplist.iml" filepath="$PROJECT_DIR$/verticalbuttongrouplist/verticalbuttongrouplist.iml" />
+    </modules>
+  </component>
+</project>
